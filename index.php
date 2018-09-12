@@ -1,5 +1,11 @@
 <?php
 
+// Check version php
+if (version_compare(PHP_VERSION, '7.1', '<')) {
+    echo 'At least PHP 7.1 is required to run this script!';
+    exit(1);
+}
+
 // Ignore the user's disconnection and allows the script to be started constantly
 // Игнорирует отключение пользователя и позволяет скрипту быть запущенным постоянно
 ignore_user_abort(1);
