@@ -1,5 +1,5 @@
 <?php
-namespace system\core\abstracts\MVC;
+namespace system\core\abstracts\mvc;
 
 use system\core\Logger;
 

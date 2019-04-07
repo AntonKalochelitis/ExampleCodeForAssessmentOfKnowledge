@@ -2,9 +2,8 @@
 
 namespace system\core\traits\patterns;
 
-trait tSingleton
+trait Singleton
 {
-
     /**
      * Защищаем от создания через new Class
      * @param array $params

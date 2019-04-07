@@ -39,7 +39,7 @@ defined('START_SCRIPT') or define('START_SCRIPT', microtime(true));
 defined('DEFAULT_DIR') or define('DEFAULT_DIR', realpath(dirname(__FILE__)));
 defined('TEMP_DIR') or define('TEMP_DIR', realpath(dirname(__FILE__ ) . DIRECTORY_SEPARATOR . 'temp'));
 
-// connectino autoload
+// connection autoload
 // Подключаем Автолоадер
 require_once DEFAULT_DIR . DIRECTORY_SEPARATOR . 'system' . DIRECTORY_SEPARATOR . 'autoload.php';
 

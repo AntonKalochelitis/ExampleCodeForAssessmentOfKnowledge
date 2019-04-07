@@ -1,11 +1,11 @@
 <?php
 namespace system\core\requests;
 
-use system\core\traits\patterns\tSingleton;
+use system\core\traits\patterns\Singleton;
 
 class Post
 {
-    use tSingleton;
+    use Singleton;
 
     private $request_post = [];
 

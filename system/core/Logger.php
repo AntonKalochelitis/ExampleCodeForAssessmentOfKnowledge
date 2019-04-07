@@ -2,11 +2,11 @@
 
 namespace system\core;
 
-use system\core\traits\patterns\tSingleton;
+use system\core\traits\patterns\Singleton;
 
 class Logger
 {
-    use tSingleton;
+    use Singleton;
 
     private static $debug = true;
 

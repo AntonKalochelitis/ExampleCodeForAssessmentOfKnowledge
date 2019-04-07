@@ -1,9 +1,9 @@
 <?php
 namespace system\core\abstracts\patterns;
 
-use system\core\abstracts\MVC\Method;
+use system\core\abstracts\mvc\Method;
 
-class aFactoryMethod
+class FactoryMethod
 {
     protected static $controller = null;
 

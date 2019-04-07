@@ -1,5 +1,5 @@
 <?php
-namespace system\core\abstracts\MVC;
+namespace system\core\abstracts\mvc;
 
 use system\core\requests\Argv;
 use system\core\requests\Get;

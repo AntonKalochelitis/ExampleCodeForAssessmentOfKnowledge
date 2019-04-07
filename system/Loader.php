@@ -1,14 +1,14 @@
 <?php
 namespace system;
 
-use system\core\abstracts\patterns\aFactoryMethod;
-use system\core\abstracts\patterns\aSingleton;
+use system\core\abstracts\patterns\FactoryMethod;
+use system\core\abstracts\patterns\Singleton;
 use system\core\Logger;
 use system\core\requests\Argv;
 use system\core\requests\Get;
 use system\core\requests\Post;
 
-class Loader extends aSingleton
+class Loader extends Singleton
 {
     private $argv   =   null;
     private $get    =   null;
@@ -34,7 +34,7 @@ class Loader extends aSingleton
         }
 
         if (!empty($method)) {
-            aFactoryMethod::getInstance($method);
+            FactoryMethod::getInstance($method);
         } else {
             $exception_message = 'Method is Empty!';
 
