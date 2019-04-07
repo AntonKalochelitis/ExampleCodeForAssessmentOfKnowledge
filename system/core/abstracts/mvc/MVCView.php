@@ -3,7 +3,7 @@ namespace system\core\abstracts\mvc;
 
 use system\core\Logger;
 
-class MVC_View
+class MVCView
 {
     protected $logger       =   null;
     protected $show_body    =   '';

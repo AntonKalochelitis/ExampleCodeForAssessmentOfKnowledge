@@ -3,7 +3,7 @@ namespace system\core\abstracts\mvc;
 
 use system\core\Logger;
 
-abstract class MVC_Model
+abstract class MVCModel
 {
     protected $db;
     protected $logger;

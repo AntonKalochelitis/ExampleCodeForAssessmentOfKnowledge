@@ -26,22 +26,22 @@ class Method
         $this->model        = new $varModel();
         $this->view         = new $varView();
 
-        if (!$this->model instanceof \system\core\abstracts\mvc\MVC_Model) {
-            $exception_message = $varModel . ' is not a abstract \system\core\abstracts\mvc\MVC_Model';
+        if (!$this->model instanceof \system\core\abstracts\mvc\MVCModel) {
+            $exception_message = $varModel . ' is not a abstract \system\core\abstracts\mvc\MVCModel';
             $e = new \Exception($exception_message);
             Logger::getInstance()->getException($e);
         }
 
-        if (!$this->view instanceof \system\core\abstracts\mvc\MVC_View) {
-            $exception_message = $varView . ' is not a abstract \system\core\abstracts\mvc\MVC_View';
+        if (!$this->view instanceof \system\core\abstracts\mvc\MVCView) {
+            $exception_message = $varView . ' is not a abstract \system\core\abstracts\mvc\MVCView';
             $e = new \Exception($exception_message);
             Logger::getInstance()->getException($e);
         }
 
         $this->controller = new $varController($this->model, $this->view);
 
-        if (!$this->controller instanceof \system\core\abstracts\mvc\MVC_Controller) {
-            $exception_message = $varController . ' is not a abstract \system\core\abstracts\mvc\MVC_Controller';
+        if (!$this->controller instanceof \system\core\abstracts\mvc\MVCController) {
+            $exception_message = $varController . ' is not a abstract \system\core\abstracts\mvc\MVCController';
             $e = new \Exception($exception_message);
             Logger::getInstance()->getException($e);
         }

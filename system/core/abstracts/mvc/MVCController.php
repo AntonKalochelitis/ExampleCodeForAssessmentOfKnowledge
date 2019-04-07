@@ -6,7 +6,7 @@ use system\core\requests\Get;
 use system\core\requests\Post;
 use system\core\Logger;
 
-abstract class MVC_Controller
+abstract class MVCController
 {
     protected $argv     =   null;
     protected $get      =   null;
@@ -16,7 +16,7 @@ abstract class MVC_Controller
     protected $model    =   null;
     protected $view     =   null;
 
-    public function __construct(MVC_Model $model, MVC_View $view)
+    public function __construct(MVCModel $model, MVCView $view)
     {
         if (true == IS_SHALL) {
             $this->argv = Argv::getInstance()->getRequest();
