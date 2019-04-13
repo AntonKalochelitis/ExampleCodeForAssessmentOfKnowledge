@@ -1,8 +1,16 @@
 <?php
+
 namespace system\core\abstracts\mvc;
 
 use system\core\Logger;
 
+/**
+ *
+ *
+ * Class MVCModel
+ *
+ * @package system\core\abstracts\mvc
+ */
 abstract class MVCModel
 {
     protected $db;

@@ -1,8 +1,16 @@
 <?php
+
 namespace system\core\abstracts\mvc;
 
 use system\core\Logger;
 
+/**
+ *
+ *
+ * Class MVCView
+ *
+ * @package system\core\abstracts\mvc
+ */
 class MVCView
 {
     protected $logger       =   null;

@@ -1,8 +1,16 @@
 <?php
+
 namespace system\core\requests;
 
 use system\core\traits\patterns\Singleton;
 
+/**
+ *
+ *
+ * Class Post
+ *
+ * @package system\core\requests
+ */
 class Post
 {
     use Singleton;

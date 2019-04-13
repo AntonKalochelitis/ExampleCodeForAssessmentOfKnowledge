@@ -4,6 +4,13 @@ namespace system\core;
 
 use system\core\traits\patterns\Singleton;
 
+/**
+ *
+ *
+ * Class Logger
+ *
+ * @package system\core
+ */
 class Logger
 {
     use Singleton;

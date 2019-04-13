@@ -1,4 +1,5 @@
 <?php
+
 namespace system\core\abstracts\mvc;
 
 use system\core\requests\Argv;
@@ -6,6 +7,13 @@ use system\core\requests\Get;
 use system\core\requests\Post;
 use system\core\Logger;
 
+/**
+ *
+ *
+ * Class MVCController
+ *
+ * @package system\core\abstracts\mvc
+ */
 abstract class MVCController
 {
     protected $argv     =   null;

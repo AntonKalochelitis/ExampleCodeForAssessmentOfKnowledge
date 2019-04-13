@@ -2,6 +2,12 @@
 
 spl_autoload_register('autoload');
 
+/**
+ * Autoload start function
+ * Функция запуска автоподключения файлов классов
+ *
+ * @param string $class_name
+ */
 function autoload($class_name = '')
 {
     if (!empty($class_name)) {

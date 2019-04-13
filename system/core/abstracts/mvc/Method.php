@@ -1,9 +1,17 @@
 <?php
+
 namespace system\core\abstracts\mvc;
 
 use system\core\Logger;
 use system\core\traits\patterns\Singleton;
 
+/**
+ *
+ *
+ * Class Method
+ *
+ * @package system\core\abstracts\mvc
+ */
 class Method
 {
     use Singleton;

@@ -1,8 +1,16 @@
 <?php
+
 namespace system\core\requests;
 
 use system\core\traits\patterns\Singleton;
 
+/**
+ *
+ *
+ * Class Argv
+ *
+ * @package system\core\requests
+ */
 class Argv
 {
     use Singleton;

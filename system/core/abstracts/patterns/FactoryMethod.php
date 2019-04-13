@@ -1,8 +1,16 @@
 <?php
+
 namespace system\core\abstracts\patterns;
 
 use system\core\abstracts\mvc\Method;
 
+/**
+ *
+ *
+ * Class FactoryMethod
+ *
+ * @package system\core\abstracts\patterns
+ */
 class FactoryMethod
 {
     protected static $controller = null;

@@ -2,6 +2,13 @@
 
 namespace system\core\traits\patterns;
 
+/**
+ * Трейт используем для создания объекта Singleton
+ *
+ * Trait Singleton
+ *
+ * @package system\core\traits\patterns
+ */
 trait Singleton
 {
     /**

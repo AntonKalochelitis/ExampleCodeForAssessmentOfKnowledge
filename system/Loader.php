@@ -1,4 +1,5 @@
 <?php
+
 namespace system;
 
 use system\core\abstracts\patterns\FactoryMethod;
@@ -8,6 +9,13 @@ use system\core\requests\Argv;
 use system\core\requests\Get;
 use system\core\requests\Post;
 
+/**
+ * Класс Loader обрабатывает методы связанные с началом загрузки странички
+ *
+ * Class Loader
+ *
+ * @package system
+ */
 class Loader extends Singleton
 {
     private $argv   =   null;
@@ -41,6 +49,5 @@ class Loader extends Singleton
             $e = new \Exception($exception_message);
             Logger::getInstance()->getException($e);
         }
-
     }
 }
