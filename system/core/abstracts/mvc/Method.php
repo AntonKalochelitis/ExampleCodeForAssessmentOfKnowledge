@@ -3,7 +3,7 @@
 namespace system\core\abstracts\mvc;
 
 use system\core\Logger;
-use system\core\traits\patterns\Singleton;
+use system\core\abstracts\traits\patterns\Singleton;
 
 /**
  *

@@ -1,6 +1,6 @@
 <?php
 
-namespace system\core\traits\patterns;
+namespace system\core\abstracts\traits\patterns;
 
 /**
  * Трейт используем для создания объекта Singleton

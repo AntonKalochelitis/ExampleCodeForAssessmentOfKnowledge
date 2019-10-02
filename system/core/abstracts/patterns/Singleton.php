@@ -11,5 +11,5 @@ namespace system\core\abstracts\patterns;
  */
 abstract class Singleton
 {
-    use \system\core\traits\patterns\Singleton;
+    use \system\core\abstracts\traits\patterns\Singleton;
 }

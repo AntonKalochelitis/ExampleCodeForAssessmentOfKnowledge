@@ -2,7 +2,7 @@
 
 namespace system\core;
 
-use system\core\traits\patterns\Singleton;
+use system\core\abstracts\traits\patterns\Singleton;
 
 /**
  *
