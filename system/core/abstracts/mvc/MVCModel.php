@@ -19,14 +19,12 @@ abstract class MVCModel
     public function __construct()
     {
         $this->logger   =   Logger::getInstance();
-        $this->db       =   $this->db_connect();
+        $this->db       =   $this->dbConnect();
     }
 
     // TODO:
-    public function db_connect()
+    public function dbConnect()
     {
-
         return null;
-
     }
 }
