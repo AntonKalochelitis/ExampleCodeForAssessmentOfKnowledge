@@ -1,13 +1,15 @@
 #!/usr/bin/env php
 <?php
 
-$directory = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR;
+$dir = realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR;
+$dirTemp = $dir.'..'.DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
+$dirLog = $dirTemp.'log'.DIRECTORY_SEPARATOR;
 
 $result = shell_exec(
     '/opt/php72/bin/php -q '
-    . $directory
-    . 'index.php'
-    . ' '
-    . 'method=creatorPrice'
+   .$dir
+   .'./../index.php'
+   .' '
+   .'method=creatorPrice'
 );
 print_r($result);
