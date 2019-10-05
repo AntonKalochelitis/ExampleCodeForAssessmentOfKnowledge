@@ -42,6 +42,7 @@ defined('TEMP_DIR') or define('TEMP_DIR', realpath(dirname(__FILE__ ) . DIRECTOR
 // connection autoload
 // Подключаем Автолоадер
 require_once DEFAULT_DIR . DIRECTORY_SEPARATOR . 'system' . DIRECTORY_SEPARATOR . 'autoload.php';
+require_once DEFAULT_DIR . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 // Start execution site
 // Стартуем сайт
