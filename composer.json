@@ -2,6 +2,6 @@
   "require": {
     "php": ">=7.2",
     "curl/curl": "^2.0",
-    "illuminate/events": "*"
+    "catfan/medoo": "*"
   }
 }
