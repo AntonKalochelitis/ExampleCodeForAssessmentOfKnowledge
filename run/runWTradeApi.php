@@ -14,4 +14,4 @@ $result = shell_exec(
 );
 
 file_put_contents($dirLog.time().'.wtradeApi'.'.log', $result, FILE_APPEND);
-print_r($result);
+//print_r($result);
