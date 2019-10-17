@@ -2,6 +2,7 @@
   "require": {
     "php": ">=7.2",
     "curl/curl": "^2.0",
-    "catfan/medoo": "*"
+    "catfan/medoo": "*",
+    "geoip/geoip": "~1.16"
   }
 }
