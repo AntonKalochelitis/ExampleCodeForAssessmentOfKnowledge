@@ -6,7 +6,7 @@ $dirTemp = $dir.'..'.DIRECTORY_SEPARATOR.'temp'.DIRECTORY_SEPARATOR;
 $dirLog = $dirTemp.'log'.DIRECTORY_SEPARATOR;
 
 $result = shell_exec(
-    '/opt/php72/bin/php -q '
+    'php -q '
    .$dir
    .'./../index.php'
    .' '
@@ -14,4 +14,4 @@ $result = shell_exec(
 );
 
 file_put_contents($dirLog.time().'.wtradeApi'.'.log', $result, FILE_APPEND);
-print_r($result);
+//print_r($result);
