@@ -3,6 +3,6 @@
     "php": ">=7.2",
     "curl/curl": "^2.0",
     "catfan/medoo": "*",
-    "geoip/geoip": "~1.16"
+    "geoip2/geoip2": "~2.0"
   }
 }
