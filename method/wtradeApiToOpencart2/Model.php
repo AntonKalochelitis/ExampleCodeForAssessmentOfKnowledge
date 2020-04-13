@@ -62,7 +62,7 @@ class Model extends \system\core\abstracts\mvc\MVCModel
             $_ENV['OPVoipTechPort']
         );
 
-        $query = "CREATE TABLE IF NOT EXISTS `oc_offer_link_product` ("
+        $query = "CREATE TABLE IF NOT EXISTS `WTrade_offer_link_product` ("
             ."`docObjId` int(11) NOT NULL,"
             ."`offeId` int(11) NOT NULL,"
             ."`productId` int(11) NOT NULL,"
@@ -72,7 +72,7 @@ class Model extends \system\core\abstracts\mvc\MVCModel
 
         $this->db->query($query);
 
-        $query = "ALTER TABLE `oc_offer_link_product` ADD UNIQUE(`docObjId`, `offeId`, `productId`);";
+        $query = "ALTER TABLE `WTrade_offer_link_product` ADD UNIQUE(`docObjId`, `offeId`, `productId`);";
         $this->db->query($query);
     }
 
@@ -91,7 +91,7 @@ class Model extends \system\core\abstracts\mvc\MVCModel
             $_ENV['OPVoipTechPort']
         );
 
-        $query = "INSERT INTO `ocvoiptech`.`oc_offer_link_product`"
+        $query = "INSERT INTO `ocvoiptech`.`WTrade_offer_link_product`"
             ." (`docObjId`, `productId`, `create_date`, `update_date`)"
             ." VALUES "
             ."('".$docObjId."', '".$offerId."', '".$productId."', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);";
