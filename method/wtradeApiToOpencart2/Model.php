@@ -739,7 +739,7 @@ NULL,
         }
 
         // Удаляем связь, если продукт уже удален
-        $query = "DELETE FROM `WTrade_offer_link_product` WHERE `docObjId`='".$docObjId."' AND `offerId`='".$offerId."' AND `productId`='".$productId."'";
+        $query = "DELETE FROM `WTrade_offer_link_product` WHERE `docObjId`='".$docObjId."' AND `offerId`='".$offerId."'";
         $this->db->query($query);
 
         return null;
