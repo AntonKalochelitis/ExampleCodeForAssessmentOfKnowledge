@@ -72,7 +72,7 @@ class Model extends \system\core\abstracts\mvc\MVCModel
 
         $this->db->query($query);
 
-        $query = "ALTER TABLE `WTrade_offer_link_product` ADD UNIQUE(`docObjId`, `offerId`, `productId`);";
+        $query = "ALTER TABLE `WTrade_offer_link_product` ADD UNIQUE KEY `docObjId_offerId` (`docObjId`, `offerId`);";
         $this->db->query($query);
     }
 
