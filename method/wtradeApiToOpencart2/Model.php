@@ -72,7 +72,27 @@ class Model extends \system\core\abstracts\mvc\MVCModel
         $this->db->query($query);
     }
 
+    /**
+     * @param int $offerId
+     * @param int $productId
+     */
+    public function insertOfferLinkProduct(int $offerId, int $productId)
+    {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
 
+        $query = "INSERT INTO `ocvoiptech`.`oc_offer_link_product`"
+            ." (`offeId`, `productId`, `create_date`, `update_date`)"
+            ." VALUES "
+            ."('".$offerId."', '".$productId."', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);";
+
+        $this->db->query($query);
+    }
 
     /**
      *
