@@ -21,6 +21,9 @@ class Controller extends \system\core\abstracts\mvc\MVCController
     {
         $countShow = 0;
 
+        // Создаем Таблицу связи между предложением и товаром в системе
+        $this->model->createTableIfNotExists();
+
         $currencyExchangeFromAPI = $this->model->getCurrencyExchangeFromAPI();
 
         $offerList = $this->model->getOfferFromAPI();

@@ -51,6 +51,31 @@ class Model extends \system\core\abstracts\mvc\MVCModel
 
     /**
      *
+     */
+    public function createTableIfNotExists()
+    {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
+        $query = "CREATE TABLE IF NOT EXISTS `oc_offer_link_product` ("
+            ."`offeId` int(11) NOT NULL,"
+            ."`productId` int(11) NOT NULL,"
+            ."`create_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',"
+            ."`update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+            .") ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+
+        $this->db->query($query);
+    }
+
+
+
+    /**
+     *
      **/
     public function getOfferFromAPI():array
     {
