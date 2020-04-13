@@ -82,8 +82,10 @@ class Controller extends \system\core\abstracts\mvc\MVCController
             }
             $countShow++;
 
+            $product = $this->model->getProductOpencartByDocObjIdAndOfferId($docObjId, $offerId);
+
             // Отображаем все не перенесенные товары
-            if (false == $this->model->getCheckProductOpencart($manufacturer, $model)) {
+            if (empty($product)) {
                 echo '- '.$manufacturer.' '.$model;
                 echo "\n";
 
@@ -163,7 +165,6 @@ class Controller extends \system\core\abstracts\mvc\MVCController
 //		echo "\n";
 //		print_r("\n".$productId."\n");
             } else {
-                $product = $this->model->getProductOpencart($manufacturer, $model);
                 $productId = $product['product_id'];
                 $productIdList[] = $productId;
 //		print_r("\n".$productId."\n");
