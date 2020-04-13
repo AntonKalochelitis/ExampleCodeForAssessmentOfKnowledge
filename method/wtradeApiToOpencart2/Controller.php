@@ -97,7 +97,7 @@ class Controller extends \system\core\abstracts\mvc\MVCController
                 $productIdList[] = $productId;
 
                 // Создаем связь между предложением и продуктом в системе
-                $this->model->insertOfferLinkProduct($offerId, $productId);
+                $this->model->insertOfferLinkProduct($docObjId, $offerId, $productId);
 
                 // Меняем код товара на цифровой
                 $this->model->setUpdateProductModelOpencart($productId);

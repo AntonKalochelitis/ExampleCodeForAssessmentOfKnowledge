@@ -77,10 +77,11 @@ class Model extends \system\core\abstracts\mvc\MVCModel
     }
 
     /**
+     * @param int $docObjId
      * @param int $offerId
      * @param int $productId
      */
-    public function insertOfferLinkProduct(int $offerId, int $productId)
+    public function insertOfferLinkProduct(int $docObjId, int $offerId, int $productId)
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -91,9 +92,9 @@ class Model extends \system\core\abstracts\mvc\MVCModel
         );
 
         $query = "INSERT INTO `ocvoiptech`.`oc_offer_link_product`"
-            ." (`offeId`, `productId`, `create_date`, `update_date`)"
+            ." (`docObjId`, `productId`, `create_date`, `update_date`)"
             ." VALUES "
-            ."('".$offerId."', '".$productId."', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);";
+            ."('".$docObjId."', '".$offerId."', '".$productId."', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);";
 
         $this->db->query($query);
     }
