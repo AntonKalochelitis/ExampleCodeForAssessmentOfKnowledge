@@ -182,6 +182,14 @@ ORDER BY vvpme.`virtuemart_media_id` DESC";
      **/
     public function getManufacturerProductOpencart($brand_name)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $query = "SELECT * FROM `oc_manufacturer` WHERE `name`='".$brand_name."'";
         $this->db->query($query);
 
@@ -193,6 +201,14 @@ ORDER BY vvpme.`virtuemart_media_id` DESC";
      **/
     public function setInsertProductOpencart($manufacturerId, $model, $sku, $price)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $query = "INSERT INTO
 `ocvoiptech`.`oc_product`
 (
@@ -270,6 +286,14 @@ NULL,
      **/
     public function setUpdateProductModelOpencart($id)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $count = mb_strlen($id);
         $idName = str_repeat('0', 5 - $count);
 
@@ -282,6 +306,14 @@ NULL,
      **/
     public function setUpdateProductOpencart($id, $pathImageFile)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $query = "UPDATE `ocvoiptech`.`oc_product` SET `image` = '".$pathImageFile."' WHERE `oc_product`.`product_id` = '".$id."';";
 
         $this->db->query($query);
@@ -292,6 +324,14 @@ NULL,
      **/
     public function setInsertProductImageOpencart($productId, $pathImageFile, $i)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $query = "INSERT INTO `ocvoiptech`.`oc_product_image` (`product_id`, `image`, `sort_order`) VALUES ('".$productId."', '".$pathImageFile."', '".$i."')";
         $this->db->query($query);
 
@@ -303,6 +343,14 @@ NULL,
      **/
     public function setInsertProductDescriptionOpencart($productId, $product_name, $product_s_desc, $product_desc, $meta_title, $meta_description, $meta_key, $slug)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $query = "INSERT INTO `ocvoiptech`.`oc_product_description`
 (
 `product_id`,
@@ -337,6 +385,14 @@ NULL,
      **/
     public function setInsertProductToLayoutOpencart($product_id)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $query = "INSERT INTO `ocvoiptech`.`oc_product_to_layout` (`product_id`, `store_id`, `layout_id`) VALUES ('".$product_id."', '0', '0')";
         $this->db->query($query);
 
@@ -348,6 +404,14 @@ NULL,
      **/
     public function setInsertProductToStoreOpencart($product_id)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $query = "INSERT INTO `ocvoiptech`.`oc_product_to_store` (`product_id`, `store_id`) VALUES ('".$product_id."', '0')";
         $this->db->query($query);
 
@@ -359,6 +423,14 @@ NULL,
      **/
     public function setProductOption($productId, $optionId)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $productOptionId = $this->getIdForTableByPrimaryKey('oc_product_option', 'product_option_id');
 
         $query = "INSERT INTO `ocvoiptech`.`oc_product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`"
@@ -374,6 +446,14 @@ NULL,
      **/
     public function getProductOptionValue($productOptionId, $productId)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $query = "SELECT * FROM `oc_product_option_value` WHERE `product_option_id`='".$productOptionId."' AND `product_id`='".$productId."'";
         $this->db->query($query);
 
@@ -387,6 +467,14 @@ NULL,
      **/
     public function getIdForTableByPrimaryKey($table, $primaryKey)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $rPrimaryKey = [];
 
         $query = "SELECT max(`". $primaryKey."`) as primaryKey FROM `".$table."`";
@@ -414,6 +502,14 @@ NULL,
      **/
     public function setProductOptionValue($productOptionId, $productId, $optionId, $optionValueId, $price)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $productOptionValueId = $this->getIdForTableByPrimaryKey('oc_product_option_value', 'product_option_value_id');
 
         $query = "INSERT INTO
@@ -457,6 +553,14 @@ NULL,
      **/
     public function getProductOption($productId):?array
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $query = "SELECT * FROM `oc_product_option` WHERE `product_id`='".$productId."' AND `option_id` IN (1,2)";
         $this->db->query($query);
 
@@ -470,6 +574,14 @@ NULL,
      **/
     public function setDeleteProductOption($productOptionId)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $query = "DELETE FROM `oc_product_option` WHERE `product_option_id` = '".$productOptionId."'";
 
         $this->db->query($query);
@@ -481,11 +593,11 @@ NULL,
     public function getProductOpencart($manufacturer, $sku)
     {
         $this->db->connect(
-            '193.108.251.98',
-            'ocvoiptech',
-            'I6v7T1a1U5y8W7x0',
-            'ocvoiptech',
-            '3308'
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
         );
 
         $query = "SELECT `manufacturer_id` FROM `oc_manufacturer` WHERE `name` = '".$manufacturer."' LIMIT 1";
@@ -506,6 +618,14 @@ NULL,
      **/
     public function setDeleteProductOptionValue($productOptionValueId)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $query = "DELETE FROM `oc_product_option_value` WHERE `product_option_value_id` = '".$productOptionValueId."'";
 
         $this->db->query($query);
@@ -516,6 +636,14 @@ NULL,
      **/
     public function setProductPrice($productId, $price)
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         $query = "UPDATE `ocvoiptech`.`oc_product` SET `price` = '".$price."' WHERE `oc_product`.`product_id`='".$productId."';";
 
         $this->db->query($query);
@@ -526,6 +654,14 @@ NULL,
      **/
     public function setProductStatus(array $productIdList = [])
     {
+        $this->db->connect(
+            $_ENV['OPVoipTechIp'],
+            $_ENV['OPVoipTechLogin'],
+            $_ENV['OPVoipTechPass'],
+            $_ENV['OPVoipTechMysqlBase'],
+            $_ENV['OPVoipTechPort']
+        );
+
         if (!empty($productIdList)) {
             $query = "UPDATE `ocvoiptech`.`oc_product` SET `quantity`=0, `stock_status_id`=5;";
             $this->db->query($query);
