@@ -20,8 +20,8 @@ include_once(DEFAULT_DIR.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIREC
 class Model extends \system\core\abstracts\mvc\MVCModel
 {
     /**
-    *
-    **/
+     *
+     **/
     public function dbConnect()
     {
         return new DatabaseMysqli();
@@ -35,42 +35,42 @@ class Model extends \system\core\abstracts\mvc\MVCModel
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function getCurrencyExchangeFromAPI():array
     {
-	$apiCurrencyExchangeJson = ApiCommand::getApiCurrencyExchange(
-	    ['USD', 'EUR', 'RUB'],
-	    'http://wtrade-backend.w-develop.com',
-	    'FBSziJfsMuAYeiEJ6dlqBIoeUB5XQG6F',
-	    'h9fMbRoJ7ykaBSACtOGMbz1gvMfBSJCdNfBF2qvFeyYkvGoZj4dQcb3i0WLs6ro3'
-	);
+        $apiCurrencyExchangeJson = ApiCommand::getApiCurrencyExchange(
+            ['USD', 'EUR', 'RUB'],
+            $_ENV['apiWTradeUrl'],
+            $_ENV['apiWTradeName'],
+            $_ENV['apiWTradeKey']
+        );
 
-	return (array)json_decode($apiCurrencyExchangeJson, 1);
+        return (array)json_decode($apiCurrencyExchangeJson, 1);
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function getOfferFromAPI():array
     {
         $resultJson = ApiCommand::getApiDocumentProducts(
-	    106,
-	    'http://wtrade-backend.w-develop.com',
-	    'FBSziJfsMuAYeiEJ6dlqBIoeUB5XQG6F',
-	    'h9fMbRoJ7ykaBSACtOGMbz1gvMfBSJCdNfBF2qvFeyYkvGoZj4dQcb3i0WLs6ro3'
-	);
+            106,
+            $_ENV['apiWTradeUrl'],
+            $_ENV['apiWTradeName'],
+            $_ENV['apiWTradeKey']
+        );
 
-	if (!empty($resultJson)) {
-	    return json_decode($resultJson, 1);
+        if (!empty($resultJson)) {
+            return json_decode($resultJson, 1);
         }
 
-	return [];
+        return [];
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function getVirtuemartProduct():array
     {
         $this->db->connect(
@@ -117,8 +117,8 @@ vvcc.`category_parent_id` = 0";
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function getProductDescriptionById($id)
     {
         $this->db->connect(
@@ -145,8 +145,8 @@ vvprr.virtuemart_product_id = '".$id."'";
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function getProductImagesById($id)
     {
         $this->db->connect(
@@ -168,32 +168,32 @@ ORDER BY vvpme.`virtuemart_media_id` DESC";
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function getCheckProductOpencart($manufacturer, $sku)
     {
         $result = $this->getProductOpencart($manufacturer, $sku);
 
-	return (!empty($result))?1:0;
+        return (!empty($result))?1:0;
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function getManufacturerProductOpencart($brand_name)
     {
-	$query = "SELECT * FROM `oc_manufacturer` WHERE `name`='".$brand_name."'";
+        $query = "SELECT * FROM `oc_manufacturer` WHERE `name`='".$brand_name."'";
         $this->db->query($query);
 
         return $this->db->row();
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function setInsertProductOpencart($manufacturerId, $model, $sku, $price)
     {
-	$query = "INSERT INTO
+        $query = "INSERT INTO
 `ocvoiptech`.`oc_product`
 (
 `model`,
@@ -262,48 +262,48 @@ NULL,
 )";
         $this->db->query($query);
 
-	return $this->db->getID();
+        return $this->db->getID();
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function setUpdateProductModelOpencart($id)
     {
-	$count = mb_strlen($id);
+        $count = mb_strlen($id);
         $idName = str_repeat('0', 5 - $count);
 
-	$query = "UPDATE `ocvoiptech`.`oc_product` SET `model` = '".$idName.$id."'WHERE `oc_product`.`product_id` = '".$id."';";
+        $query = "UPDATE `ocvoiptech`.`oc_product` SET `model` = '".$idName.$id."'WHERE `oc_product`.`product_id` = '".$id."';";
         $this->db->query($query);
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function setUpdateProductOpencart($id, $pathImageFile)
     {
-	$query = "UPDATE `ocvoiptech`.`oc_product` SET `image` = '".$pathImageFile."' WHERE `oc_product`.`product_id` = '".$id."';";
+        $query = "UPDATE `ocvoiptech`.`oc_product` SET `image` = '".$pathImageFile."' WHERE `oc_product`.`product_id` = '".$id."';";
 
         $this->db->query($query);
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function setInsertProductImageOpencart($productId, $pathImageFile, $i)
     {
-	$query = "INSERT INTO `ocvoiptech`.`oc_product_image` (`product_id`, `image`, `sort_order`) VALUES ('".$productId."', '".$pathImageFile."', '".$i."')";
-	$this->db->query($query);
+        $query = "INSERT INTO `ocvoiptech`.`oc_product_image` (`product_id`, `image`, `sort_order`) VALUES ('".$productId."', '".$pathImageFile."', '".$i."')";
+        $this->db->query($query);
 
-	return $this->db->getID();
+        return $this->db->getID();
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function setInsertProductDescriptionOpencart($productId, $product_name, $product_s_desc, $product_desc, $meta_title, $meta_description, $meta_key, $slug)
     {
-	$query = "INSERT INTO `ocvoiptech`.`oc_product_description`
+        $query = "INSERT INTO `ocvoiptech`.`oc_product_description`
 (
 `product_id`,
 `language_id`,
@@ -327,96 +327,96 @@ NULL,
 '".$meta_key."',
 '".$product_name."'
 )";
-	$this->db->query($query);
-
-	return $this->db->getID();
-    }
-
-    /**
-    *
-    **/
-    public function setInsertProductToLayoutOpencart($product_id)
-    {
-	$query = "INSERT INTO `ocvoiptech`.`oc_product_to_layout` (`product_id`, `store_id`, `layout_id`) VALUES ('".$product_id."', '0', '0')";
-	$this->db->query($query);
-
-	return $this->db->getID();
-    }
-
-    /**
-    *
-    **/
-    public function setInsertProductToStoreOpencart($product_id)
-    {
-	$query = "INSERT INTO `ocvoiptech`.`oc_product_to_store` (`product_id`, `store_id`) VALUES ('".$product_id."', '0')";
-	$this->db->query($query);
-
-	return $this->db->getID();
-    }
-
-    /**
-    *
-    **/
-    public function setProductOption($productId, $optionId)
-    {
-	$productOptionId = $this->getIdForTableByPrimaryKey('oc_product_option', 'product_option_id');
-
-	$query = "INSERT INTO `ocvoiptech`.`oc_product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`"
-	.") VALUES ("
-	."'".$productOptionId."', '".$productId."', '".$optionId."', '', '1');";
-	$this->db->query($query);
-
-	return $this->db->getID();
-    }
-
-    /**
-    *
-    **/
-    public function getProductOptionValue($productOptionId, $productId)
-    {
-	$query = "SELECT * FROM `oc_product_option_value` WHERE `product_option_id`='".$productOptionId."' AND `product_id`='".$productId."'";
         $this->db->query($query);
 
-	$rows = $this->db->row();
+        return $this->db->getID();
+    }
+
+    /**
+     *
+     **/
+    public function setInsertProductToLayoutOpencart($product_id)
+    {
+        $query = "INSERT INTO `ocvoiptech`.`oc_product_to_layout` (`product_id`, `store_id`, `layout_id`) VALUES ('".$product_id."', '0', '0')";
+        $this->db->query($query);
+
+        return $this->db->getID();
+    }
+
+    /**
+     *
+     **/
+    public function setInsertProductToStoreOpencart($product_id)
+    {
+        $query = "INSERT INTO `ocvoiptech`.`oc_product_to_store` (`product_id`, `store_id`) VALUES ('".$product_id."', '0')";
+        $this->db->query($query);
+
+        return $this->db->getID();
+    }
+
+    /**
+     *
+     **/
+    public function setProductOption($productId, $optionId)
+    {
+        $productOptionId = $this->getIdForTableByPrimaryKey('oc_product_option', 'product_option_id');
+
+        $query = "INSERT INTO `ocvoiptech`.`oc_product_option` (`product_option_id`, `product_id`, `option_id`, `value`, `required`"
+            .") VALUES ("
+            ."'".$productOptionId."', '".$productId."', '".$optionId."', '', '1');";
+        $this->db->query($query);
+
+        return $this->db->getID();
+    }
+
+    /**
+     *
+     **/
+    public function getProductOptionValue($productOptionId, $productId)
+    {
+        $query = "SELECT * FROM `oc_product_option_value` WHERE `product_option_id`='".$productOptionId."' AND `product_id`='".$productId."'";
+        $this->db->query($query);
+
+        $rows = $this->db->row();
 
         return (!empty($rows))?$rows:null;
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function getIdForTableByPrimaryKey($table, $primaryKey)
     {
-	$rPrimaryKey = [];
+        $rPrimaryKey = [];
 
-	$query = "SELECT max(`". $primaryKey."`) as primaryKey FROM `".$table."`";
-	$this->db->query($query);
-	$rows = $this->db->row();
+        $query = "SELECT max(`". $primaryKey."`) as primaryKey FROM `".$table."`";
+        $this->db->query($query);
+        $rows = $this->db->row();
 
-	$maxPrimaryKey = $rows[0]['primaryKey']+1;
-	for($i=1;$i<=$maxPrimaryKey;$i++) {
-	    $rPrimaryKey[$i] = $i;
-	}
+        $maxPrimaryKey = $rows[0]['primaryKey']+1;
+        for($i=1;$i<=$maxPrimaryKey;$i++) {
+            $rPrimaryKey[$i] = $i;
+        }
 
-	$query = "SELECT `". $primaryKey."` as primaryKeyList FROM `".$table."`";
-	$this->db->query($query);
-	$rows = $this->db->row();
+        $query = "SELECT `". $primaryKey."` as primaryKeyList FROM `".$table."`";
+        $this->db->query($query);
+        $rows = $this->db->row();
 
-	foreach($rows as $row) {
-	    unset($rPrimaryKey[$row['primaryKeyList']]);
-	}
+        foreach($rows as $row) {
+            unset($rPrimaryKey[$row['primaryKeyList']]);
+        }
 
         return array_shift($rPrimaryKey);
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function setProductOptionValue($productOptionId, $productId, $optionId, $optionValueId, $price)
     {
-	    $productOptionValueId = $this->getIdForTableByPrimaryKey('oc_product_option_value', 'product_option_value_id');
+        $productOptionValueId = $this->getIdForTableByPrimaryKey('oc_product_option_value', 'product_option_value_id');
 
-	$query = "INSERT INTO
+        $query = "INSERT INTO
 `ocvoiptech`.`oc_product_option_value`
 (
 `product_option_value_id`,
@@ -447,37 +447,37 @@ NULL,
 '0.00000000',
 '-'
 );";
-	$this->db->query($query);
+        $this->db->query($query);
 
-	return $this->db->getID();
+        return $this->db->getID();
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function getProductOption($productId):?array
     {
-	$query = "SELECT * FROM `oc_product_option` WHERE `product_id`='".$productId."' AND `option_id` IN (1,2)";
+        $query = "SELECT * FROM `oc_product_option` WHERE `product_id`='".$productId."' AND `option_id` IN (1,2)";
         $this->db->query($query);
 
-	$rows = $this->db->row();
+        $rows = $this->db->row();
 
         return (!empty($rows))?$rows:null;
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function setDeleteProductOption($productOptionId)
     {
-	$query = "DELETE FROM `oc_product_option` WHERE `product_option_id` = '".$productOptionId."'";
+        $query = "DELETE FROM `oc_product_option` WHERE `product_option_id` = '".$productOptionId."'";
 
         $this->db->query($query);
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function getProductOpencart($manufacturer, $sku)
     {
         $this->db->connect(
@@ -485,53 +485,53 @@ NULL,
             'ocvoiptech',
             'I6v7T1a1U5y8W7x0',
             'ocvoiptech',
-	    '3308'
+            '3308'
         );
 
-	$query = "SELECT `manufacturer_id` FROM `oc_manufacturer` WHERE `name` = '".$manufacturer."' LIMIT 1";
+        $query = "SELECT `manufacturer_id` FROM `oc_manufacturer` WHERE `name` = '".$manufacturer."' LIMIT 1";
         $this->db->query($query);
-	$rows = $this->db->row();
-	$manufacturerId = ((!empty($rows[0]['manufacturer_id']))?$rows[0]['manufacturer_id']:'20');
+        $rows = $this->db->row();
+        $manufacturerId = ((!empty($rows[0]['manufacturer_id']))?$rows[0]['manufacturer_id']:'20');
 
-	$query = "SELECT * FROM `oc_product` op WHERE `manufacturer_id`='".$manufacturerId."' AND op.sku = '".$sku."' LIMIT 1";
+        $query = "SELECT * FROM `oc_product` op WHERE `manufacturer_id`='".$manufacturerId."' AND op.sku = '".$sku."' LIMIT 1";
         $this->db->query($query);
 
-	$rows = $this->db->row();
+        $rows = $this->db->row();
 
-	return (!empty($rows[0])?$rows[0]:null);
+        return (!empty($rows[0])?$rows[0]:null);
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function setDeleteProductOptionValue($productOptionValueId)
     {
-	$query = "DELETE FROM `oc_product_option_value` WHERE `product_option_value_id` = '".$productOptionValueId."'";
+        $query = "DELETE FROM `oc_product_option_value` WHERE `product_option_value_id` = '".$productOptionValueId."'";
 
         $this->db->query($query);
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function setProductPrice($productId, $price)
     {
-	$query = "UPDATE `ocvoiptech`.`oc_product` SET `price` = '".$price."' WHERE `oc_product`.`product_id`='".$productId."';";
+        $query = "UPDATE `ocvoiptech`.`oc_product` SET `price` = '".$price."' WHERE `oc_product`.`product_id`='".$productId."';";
 
         $this->db->query($query);
     }
 
     /**
-    *
-    **/
+     *
+     **/
     public function setProductStatus(array $productIdList = [])
     {
-	if (!empty($productIdList)) {
-	    $query = "UPDATE `ocvoiptech`.`oc_product` SET `quantity`=0, `stock_status_id`=5;";
-    	    $this->db->query($query);
-	    $query = "UPDATE `ocvoiptech`.`oc_product` SET `quantity`=1, `stock_status_id`=7 WHERE `product_id` IN (".implode(",", $productIdList).");";
-    	    $this->db->query($query);
-	}
-	
+        if (!empty($productIdList)) {
+            $query = "UPDATE `ocvoiptech`.`oc_product` SET `quantity`=0, `stock_status_id`=5;";
+            $this->db->query($query);
+            $query = "UPDATE `ocvoiptech`.`oc_product` SET `quantity`=1, `stock_status_id`=7 WHERE `product_id` IN (".implode(",", $productIdList).");";
+            $this->db->query($query);
+        }
+
     }
 }
