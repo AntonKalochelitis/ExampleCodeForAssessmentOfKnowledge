@@ -28,6 +28,8 @@ class Controller extends \system\core\abstracts\mvc\MVCController
         $currencyExchangeFromAPI = $this->model->getCurrencyExchangeFromAPI();
 
         $offerList = $this->model->getOfferFromAPI();
+//	print_r($offerList);
+//	echo "\n";
 
         foreach($offerList as $oKey => $offer) {
             $item_id = 0;

@@ -552,10 +552,8 @@ NULL,
     /**
      * @param $table
      * @param $primaryKey
-     *
-     * @return array|null
      */
-    public function getIdForTableByPrimaryKey($table, $primaryKey):?array
+    public function getIdForTableByPrimaryKey($table, $primaryKey)
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
