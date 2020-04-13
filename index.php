@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\Dotenv\Dotenv;
+
 // Check version php
 if (version_compare(PHP_VERSION, '7.1', '<')) {
     echo 'At least PHP 7.1 is required to run this script!';
@@ -43,6 +45,12 @@ defined('TEMP_DIR') or define('TEMP_DIR', realpath(dirname(__FILE__ ) . DIRECTOR
 // Подключаем Автолоадер
 require_once DEFAULT_DIR . DIRECTORY_SEPARATOR . 'system' . DIRECTORY_SEPARATOR . 'autoload.php';
 require_once DEFAULT_DIR . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+
+if (file_exists(DEFAULT_DIR.'/.env')) {
+    $dotEnv = new Dotenv();
+    $dotEnv->load(__DIR__.'/.env');
+}
+
 
 // Start execution site
 // Стартуем сайт

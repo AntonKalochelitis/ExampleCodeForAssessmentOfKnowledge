@@ -33,19 +33,19 @@ class DatabaseMysqli {
         }
     }
 
-    public function connect($ip = null, $login = null, $pass = null, $mysqlBase = null) {
+    public function connect($ip = null, $login = null, $pass = null, $mysqlBase = null, $port = 3306) {
         $this->ip = $ip;
         $this->login = $login;
         $this->mysqlBase = $mysqlBase;
 
-        $this->link = mysqli_connect($ip, $login, $pass) or exit ("Could not connect to MySQLi");
+        $this->link = mysqli_connect($ip, $login, $pass, $mysqlBase, $port) or exit ("Could not connect to MySQLi");
         if ($this->link) {
             mysqli_query($this->link, "SET CHARACTER SET utf8");
             mysqli_query($this->link, "set character_set_client='utf8'");
             mysqli_query($this->link, "set character_set_results='utf8'");
             mysqli_query($this->link, "set collation_connection='utf8_general_ci'");
             mysqli_query($this->link, "SET NAMES utf8");
-            mysqli_select_db ($this->link, $this->mysqlBase) or exit ("Could not select database");
+//            mysqli_select_db ($this->link, $this->mysqlBase) or exit ("Could not select database");
         }
     }
 
@@ -105,7 +105,7 @@ class DatabaseMysqli {
         }
     }
 
-    public function ID(){
+    public function getID(){
         return $this->link ? mysqli_insert_id($this->link) : false;
     }
 
