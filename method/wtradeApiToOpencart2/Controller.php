@@ -20,6 +20,7 @@ class Controller extends \system\core\abstracts\mvc\MVCController
     public function getRun():void
     {
         $countShow = 0;
+        $productIdList = [];
 
         // Создаем Таблицу связи между предложением и товаром в системе
         $this->model->createTableIfNotExists();
@@ -220,7 +221,7 @@ class Controller extends \system\core\abstracts\mvc\MVCController
             }
         }
 
-        $this->model->setProductStatus($productIdList);
+        $this->model->setProductStatus($docObjId, $productIdList);
 //	print_r('COUNT: '.count($offerList));
 //	print_r('COUNT SHOW:'.$countShow);
     }

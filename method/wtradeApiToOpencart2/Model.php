@@ -20,8 +20,8 @@ include_once(DEFAULT_DIR.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIREC
 class Model extends \system\core\abstracts\mvc\MVCModel
 {
     /**
-     *
-     **/
+     * @return null|DatabaseMysqli
+     */
     public function dbConnect()
     {
         return new DatabaseMysqli();
@@ -35,8 +35,8 @@ class Model extends \system\core\abstracts\mvc\MVCModel
     }
 
     /**
-     *
-     **/
+     * @return array
+     */
     public function getCurrencyExchangeFromAPI():array
     {
         $apiCurrencyExchangeJson = ApiCommand::getApiCurrencyExchange(
@@ -100,8 +100,8 @@ class Model extends \system\core\abstracts\mvc\MVCModel
     }
 
     /**
-     *
-     **/
+     * @return array
+     */
     public function getOfferFromAPI():array
     {
         $resultJson = ApiCommand::getApiDocumentProducts(
@@ -119,8 +119,8 @@ class Model extends \system\core\abstracts\mvc\MVCModel
     }
 
     /**
-     *
-     **/
+     * @return array
+     */
     public function getVirtuemartProduct():array
     {
         $this->db->connect(
@@ -167,9 +167,11 @@ vvcc.`category_parent_id` = 0";
     }
 
     /**
+     * @param $id
      *
-     **/
-    public function getProductDescriptionById($id)
+     * @return array|null
+     */
+    public function getProductDescriptionById($id):?array
     {
         $this->db->connect(
             (new \JConfig)->host,
@@ -195,9 +197,11 @@ vvprr.virtuemart_product_id = '".$id."'";
     }
 
     /**
+     * @param $id
      *
-     **/
-    public function getProductImagesById($id)
+     * @return array|null
+     */
+    public function getProductImagesById($id):?array
     {
         $this->db->connect(
             (new \JConfig)->host,
@@ -218,8 +222,11 @@ ORDER BY vvpme.`virtuemart_media_id` DESC";
     }
 
     /**
+     * @param $manufacturer
+     * @param $sku
      *
-     **/
+     * @return int
+     */
     public function getCheckProductOpencart($manufacturer, $sku)
     {
         $result = $this->getProductOpencart($manufacturer, $sku);
@@ -228,9 +235,11 @@ ORDER BY vvpme.`virtuemart_media_id` DESC";
     }
 
     /**
+     * @param $brand_name
      *
-     **/
-    public function getManufacturerProductOpencart($brand_name)
+     * @return array|null
+     */
+    public function getManufacturerProductOpencart($brand_name):?array
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -247,9 +256,14 @@ ORDER BY vvpme.`virtuemart_media_id` DESC";
     }
 
     /**
+     * @param $manufacturerId
+     * @param $model
+     * @param $sku
+     * @param $price
      *
-     **/
-    public function setInsertProductOpencart($manufacturerId, $model, $sku, $price)
+     * @return int|null
+     */
+    public function setInsertProductOpencart($manufacturerId, $model, $sku, $price):?int
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -332,8 +346,8 @@ NULL,
     }
 
     /**
-     *
-     **/
+     * @param $id
+     */
     public function setUpdateProductModelOpencart($id)
     {
         $this->db->connect(
@@ -370,9 +384,13 @@ NULL,
     }
 
     /**
+     * @param $productId
+     * @param $pathImageFile
+     * @param $i
      *
-     **/
-    public function setInsertProductImageOpencart($productId, $pathImageFile, $i)
+     * @return int|null
+     */
+    public function setInsertProductImageOpencart($productId, $pathImageFile, $i):?int
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -389,9 +407,18 @@ NULL,
     }
 
     /**
+     * @param $productId
+     * @param $product_name
+     * @param $product_s_desc
+     * @param $product_desc
+     * @param $meta_title
+     * @param $meta_description
+     * @param $meta_key
+     * @param $slug
      *
-     **/
-    public function setInsertProductDescriptionOpencart($productId, $product_name, $product_s_desc, $product_desc, $meta_title, $meta_description, $meta_key, $slug)
+     * @return int|null
+     */
+    public function setInsertProductDescriptionOpencart($productId, $product_name, $product_s_desc, $product_desc, $meta_title, $meta_description, $meta_key, $slug):?int
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -431,9 +458,11 @@ NULL,
     }
 
     /**
+     * @param $product_id
      *
-     **/
-    public function setInsertProductToLayoutOpencart($product_id)
+     * @return int|null
+     */
+    public function setInsertProductToLayoutOpencart($product_id):?int
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -450,9 +479,11 @@ NULL,
     }
 
     /**
+     * @param $product_id
      *
-     **/
-    public function setInsertProductToStoreOpencart($product_id)
+     * @return int|null
+     */
+    public function setInsertProductToStoreOpencart($product_id):?int
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -469,9 +500,12 @@ NULL,
     }
 
     /**
+     * @param $productId
+     * @param $optionId
      *
-     **/
-    public function setProductOption($productId, $optionId)
+     * @return int|null
+     */
+    public function setProductOption($productId, $optionId):?int
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -492,9 +526,12 @@ NULL,
     }
 
     /**
+     * @param $productOptionId
+     * @param $productId
      *
-     **/
-    public function getProductOptionValue($productOptionId, $productId)
+     * @return array|null
+     */
+    public function getProductOptionValue($productOptionId, $productId):?array
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -513,9 +550,12 @@ NULL,
     }
 
     /**
+     * @param $table
+     * @param $primaryKey
      *
-     **/
-    public function getIdForTableByPrimaryKey($table, $primaryKey)
+     * @return array|null
+     */
+    public function getIdForTableByPrimaryKey($table, $primaryKey):?array
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -548,9 +588,15 @@ NULL,
     }
 
     /**
+     * @param $productOptionId
+     * @param $productId
+     * @param $optionId
+     * @param $optionValueId
+     * @param $price
      *
-     **/
-    public function setProductOptionValue($productOptionId, $productId, $optionId, $optionValueId, $price)
+     * @return int|null
+     */
+    public function setProductOptionValue($productOptionId, $productId, $optionId, $optionValueId, $price):?int
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -599,8 +645,10 @@ NULL,
     }
 
     /**
+     * @param $productId
      *
-     **/
+     * @return array|null
+     */
     public function getProductOption($productId):?array
     {
         $this->db->connect(
@@ -620,9 +668,9 @@ NULL,
     }
 
     /**
-     *
-     **/
-    public function setDeleteProductOption($productOptionId)
+     * @param int $productOptionId
+     */
+    public function setDeleteProductOption(int $productOptionId)
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -638,9 +686,12 @@ NULL,
     }
 
     /**
+     * @param $manufacturer
+     * @param $sku
      *
-     **/
-    public function getProductOpencart($manufacturer, $sku)
+     * @return array|null
+     */
+    public function getProductOpencart($manufacturer, $sku):?array
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -664,28 +715,31 @@ NULL,
     }
 
     /**
-    *
-    **/
-    public function getProductOpencartByDocObjIdAndOfferId(int $docObjId, int $offerId)
+     * @param int $docObjId
+     * @param int $offerId
+     *
+     * @return array|null
+     */
+    public function getProductOpencartByDocObjIdAndOfferId(int $docObjId, int $offerId):?array
     {
-	$query = "SELECT `productId` FROM `WTrade_offer_link_product` WHERE `docObjId`='".$docObjId."' AND `offerId`='".$offerId."' LIMIT 1";
+        $query = "SELECT `productId` FROM `WTrade_offer_link_product` WHERE `docObjId`='".$docObjId."' AND `offerId`='".$offerId."' LIMIT 1";
         $this->db->query($query);
-	$rows = $this->db->row();
+        $rows = $this->db->row();
 
-	if (!empty($rows[0]['productId'])) {
-	    $query = "SELECT * FROM `oc_product` WHERE `product_id`='".$rows[0]['productId']."'";
-	    $this->db->query($query);
-	    $rows = $this->db->row();
-	}
+        if (!empty($rows[0]['productId'])) {
+            $query = "SELECT * FROM `oc_product` WHERE `product_id`='".$rows[0]['productId']."'";
+            $this->db->query($query);
+            $rows = $this->db->row();
+        }
 
 
-	return (!empty($rows[0])?$rows[0]:null);
+        return (!empty($rows[0])?$rows[0]:null);
     }
 
     /**
-     *
-     **/
-    public function setDeleteProductOptionValue($productOptionValueId)
+     * @param int $productOptionValueId
+     */
+    public function setDeleteProductOptionValue(int $productOptionValueId)
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -701,9 +755,10 @@ NULL,
     }
 
     /**
-     *
-     **/
-    public function setProductPrice($productId, $price)
+     * @param int $productId
+     * @param $price
+     */
+    public function setProductPrice(int $productId, $price)
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -719,9 +774,10 @@ NULL,
     }
 
     /**
-     *
-     **/
-    public function setProductStatus(array $productIdList = [])
+     * @param int $docObjId
+     * @param array $productIdList
+     */
+    public function setProductStatus(int $docObjId, array $productIdList = [])
     {
         $this->db->connect(
             $_ENV['OPVoipTechIp'],
@@ -732,9 +788,21 @@ NULL,
         );
 
         if (!empty($productIdList)) {
-            $query = "UPDATE `ocvoiptech`.`oc_product` SET `quantity`=0, `stock_status_id`=5;";
+            $productIdListInActive = [];
+
+            $query = "SELECT `productId` FROM `WTrade_offer_link_product` WHERE `docObjId`='".$docObjId."'";
             $this->db->query($query);
-            $query = "UPDATE `ocvoiptech`.`oc_product` SET `quantity`=1, `stock_status_id`=7 WHERE `product_id` IN (".implode(",", $productIdList).");";
+            $rows = $this->db->row();
+            foreach ($rows as $row) {
+                $productIdListInActive[] = $row['productId'];
+            }
+
+            $query = "UPDATE `ocvoiptech`.`oc_product` SET `quantity`=0, `stock_status_id`=5 "
+                ."WHERE `product_id` IN (".implode(",", $productIdListInActive).");";
+            $this->db->query($query);
+
+            $query = "UPDATE `ocvoiptech`.`oc_product` SET `quantity`=1, `stock_status_id`=7 "
+                ."WHERE `product_id` IN (".implode(",", $productIdList).");";
             $this->db->query($query);
         }
 
