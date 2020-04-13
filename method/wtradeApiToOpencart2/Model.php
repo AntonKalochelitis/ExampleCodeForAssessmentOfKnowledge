@@ -63,12 +63,16 @@ class Model extends \system\core\abstracts\mvc\MVCModel
         );
 
         $query = "CREATE TABLE IF NOT EXISTS `oc_offer_link_product` ("
+            ."`docObjId` int(11) NOT NULL,"
             ."`offeId` int(11) NOT NULL,"
             ."`productId` int(11) NOT NULL,"
             ."`create_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',"
             ."`update_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
             .") ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 
+        $this->db->query($query);
+
+        $query = "ALTER TABLE `oc_offer_link_product` ADD UNIQUE(`docObjId`, `offeId`, `productId`);";
         $this->db->query($query);
     }
 
