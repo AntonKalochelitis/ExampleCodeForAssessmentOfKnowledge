@@ -720,18 +720,29 @@ NULL,
      */
     public function getProductOpencartByDocObjIdAndOfferId(int $docObjId, int $offerId):?array
     {
+        $productId = null;
+
         $query = "SELECT `productId` FROM `WTrade_offer_link_product` WHERE `docObjId`='".$docObjId."' AND `offerId`='".$offerId."' LIMIT 1";
         $this->db->query($query);
         $rows = $this->db->row();
 
         if (!empty($rows[0]['productId'])) {
-            $query = "SELECT * FROM `oc_product` WHERE `product_id`='".$rows[0]['productId']."'";
+            $productId = $rows[0]['productId'];
+
+            $query = "SELECT * FROM `oc_product` WHERE `product_id`='".$productId."' LIMIT 1";
             $this->db->query($query);
             $rows = $this->db->row();
         }
 
+        if (!empty($rows[0])) {
+            return $rows[0];
+        }
 
-        return (!empty($rows[0])?$rows[0]:null);
+        // Удаляем связь, если продукт уже удален
+        $query = "DELETE FROM `WTrade_offer_link_product` WHERE `docObjId`='".$docObjId."' AND `offerId`='".$offerId."' AND `product_id`='".$productId."'";
+        $this->db->query($query);
+
+        return null;
     }
 
     /**
