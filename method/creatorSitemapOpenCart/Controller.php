@@ -9,7 +9,7 @@ use system\core\Logger;
  *
  * @package method\test
  */
-class Controller extends \system\core\abstracts\mvc\MVCController
+class Controller extends \system\core\abstracts\mvc\WebController
 {
     public function getRun():void
     {

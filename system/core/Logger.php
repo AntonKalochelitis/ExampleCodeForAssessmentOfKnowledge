@@ -5,8 +5,6 @@ namespace system\core;
 use system\core\abstracts\traits\patterns\Singleton;
 
 /**
- *
- *
  * Class Logger
  *
  * @package system\core
@@ -20,7 +18,7 @@ class Logger
     /**
      * @param \Exception $e
      */
-    public function getException(\Exception $e):void
+    public function getException(\Exception $e): void
     {
         echo SEPARATOR;
         print_r('File: ' . $e->getFile());
@@ -32,7 +30,7 @@ class Logger
         echo 'Trace: ';
         echo SEPARATOR;
         $traces = explode("\n", $e->getTraceAsString());
-        foreach($traces as $trace) {
+        foreach ($traces as $trace) {
             echo $trace;
             echo SEPARATOR;
         }
@@ -41,14 +39,12 @@ class Logger
         exit();
     }
 
-    public function p_debug(string $message = '', bool $exit = false):void
+    public function p_debug(string $message = '', bool $exit = false): void
     {
         if (true == self::$debug) {
-
             $trace = debug_backtrace();
 
             if (!empty($message)) {
-
                 echo '<pre>';
                 print_r($message);
                 echo '</pre>';
@@ -60,7 +56,6 @@ class Logger
                 if (true == $exit) {
                     exit();
                 }
-
             } else {
                 echo '<pre>';
                 print_r('message is Empty');
@@ -70,11 +65,10 @@ class Logger
                 print_r($trace);
                 echo '</pre>';
             }
-
         }
     }
 
-    private function log(string $message = ''):void
+    private function log(string $message = ''): void
     {
         $PathToDirLog = realpath(DEFAULT_DIR . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR);
 
@@ -82,17 +76,15 @@ class Logger
 
         $PathToFileLog = $PathToDirLog . 'core.log';
 
-        $log = fopen ($PathToFileLog, 'a');
-        fwrite ($log, PHP_EOL . 'time: ' . time() . ': ' . $message);
-        fclose ($log);
+        $log = fopen($PathToFileLog, 'a');
+        fwrite($log, PHP_EOL . 'time: ' . time() . ': ' . $message);
+        fclose($log);
     }
 
-    public function notifyAndLog(array $config = [], string $message = ''):void
+    public function notifyAndLog(array $config = [], string $message = ''): void
     {
-
         self::p_debug($message);
 //        self::sendMail($config, $message); // TODO: I need to do
         self::log($message);
-
     }
 }

@@ -1,6 +1,13 @@
+#!/usr/bin/env php
+
 <?php
 
 use Symfony\Component\Dotenv\Dotenv;
+use system\core\Logger;
+
+// Set the time for the script execution
+// Задаем метку начала выполнения скрипта
+defined('START_SCRIPT') or define('START_SCRIPT', microtime(true));
 
 // Check version php
 if (version_compare(PHP_VERSION, '7.1', '<')) {
@@ -29,29 +36,31 @@ if (substr($sapi_type, 0, 3) == 'cli' || empty($_SERVER['REMOTE_ADDR'])) {
     define('ARGV', $argv);
 } else {
     defined('IS_SHALL') or define('IS_SHALL', false);
-    define('SEPARATOR', '<br/>' . PHP_EOL);
 }
-
-// Set the time for the script execution
-// Задаем метку начала выполнения скрипта
-defined('START_SCRIPT') or define('START_SCRIPT', microtime(true));
 
 // Set the root directory
 // Задаем корневую дерикторию
-defined('DEFAULT_DIR') or define('DEFAULT_DIR', realpath(dirname(__FILE__)));
-defined('TEMP_DIR') or define('TEMP_DIR', realpath(dirname(__FILE__ ) . DIRECTORY_SEPARATOR . 'temp'));
+defined('DEFAULT_DIR') or define('DEFAULT_DIR', realpath(dirname(__FILE__) . '/..'));
+defined('TEMP_DIR') or define('TEMP_DIR', realpath(DEFAULT_DIR . DIRECTORY_SEPARATOR . 'temp'));
 
 // connection autoload
 // Подключаем Автолоадер
 require_once DEFAULT_DIR . DIRECTORY_SEPARATOR . 'system' . DIRECTORY_SEPARATOR . 'autoload.php';
-require_once DEFAULT_DIR . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-
-if (file_exists(DEFAULT_DIR.'/.env')) {
-    $dotEnv = new Dotenv();
-    $dotEnv->load(__DIR__.'/.env');
+if (is_file(DEFAULT_DIR . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php')) {
+    require_once DEFAULT_DIR . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 }
 
+if (file_exists(DEFAULT_DIR . '/.env')) {
+    $dotEnv = new Dotenv();
+    $dotEnv->load(__DIR__ . '/.env');
+}
 
-// Start execution site
-// Стартуем сайт
-\system\Loader::getInstance()->InitWorkSpace();
+try {
+    // Start execution site
+    // Стартуем сайт
+    /** @var \system\Loader $system */
+    $system = \system\Loader::getInstance();
+    $system->InitConsoleWorkSpace();
+} catch (\Exception $e) {
+    Logger::getInstance()->getException($e);
+}

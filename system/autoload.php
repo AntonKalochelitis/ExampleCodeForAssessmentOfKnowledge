@@ -24,9 +24,8 @@ function autoload($class_name = '')
             }
 
             require_once($path_to_file);
-
         } catch (\Exception $e) {
-            \system\core\LoggerLogger::getInstance()->getException($e);
+            \system\core\Logger::getInstance()->getException($e);
         }
     }
 }

@@ -22,11 +22,12 @@ class FactoryMethod
         return static::getController();
     }
 
-    protected static function setController(string $method):void
+    protected static function setController(string $method): void
     {
-        Method::getInstance()->setMethod($method);
+        $methodObj = Method::getInstance();
+        $methodObj->setMethod($method);
 
-        static::$controller = Method::getInstance()->getMethod();
+        static::$controller = $methodObj->getMethod();
     }
 
     protected static function getController()

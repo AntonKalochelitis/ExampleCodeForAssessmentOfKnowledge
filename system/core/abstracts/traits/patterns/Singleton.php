@@ -4,6 +4,7 @@ namespace system\core\abstracts\traits\patterns;
 
 /**
  * Трейт используем для создания объекта Singleton
+ * This trait is used to create a Singleton object
  *
  * Trait Singleton
  *
@@ -13,24 +14,37 @@ trait Singleton
 {
     /**
      * Защищаем от создания через new Class
+     * We protect from creation through new Class
+     *
      * @param array $params
      */
-    protected function __construct(array $params = [])
+    final protected function __construct(array $params = [])
     {/* ... @return Singleton */}
 
     /**
      * Защищаем от создания через клонирование
+     * We protect from creation through cloning
      */
-    protected function __clone()
+    final public function __clone()
     {/* ... @return Singleton */}
 
     /**
      * Защищаем от создания через unserialize
+     * We protect from creation through unserialize
      */
-    protected function __wakeup()
+    final public function __wakeup()
     {/* ... @return Singleton */}
 
-    protected static $instance    =   null;
+    /**
+     * @param array $params
+     * @return Singleton
+     */
+    public function __invoke(array $params = [])
+    {
+        return self::getInstance($params);
+    }
+
+    protected static $instance = null;
 
     /**
      * @param array $params
@@ -39,29 +53,5 @@ trait Singleton
     public static function getInstance(array $params = [])
     {
         return static::$instance === null ? static::$instance = new static($params) : static::$instance;
-    }
-
-    protected $variable           =   null;
-
-    /**
-     * @param $variable
-     * @return null
-     */
-    function __get($variable)
-    {
-        if (isset($this->variable[$variable])) {
-            return $this->variable[$variable];
-        }
-
-        return null;
-    }
-
-    /**
-     * @param string $variable
-     * @param mixed $val
-     */
-    function __set($variable = '', $val = null)
-    {
-        $this->variable[$variable] = $val;
     }
 }

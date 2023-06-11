@@ -5,8 +5,6 @@ namespace system\core\requests;
 use system\core\abstracts\traits\patterns\Singleton;
 
 /**
- *
- *
  * Class Argv
  *
  * @package system\core\requests
@@ -15,28 +13,25 @@ class Argv
 {
     use Singleton;
 
-    private $request_argv = [];
+    protected $requestArgv = [];
 
-    protected function __construct(array $params = [])
+    protected function __construct()
     {
-
-        $vars = ARGV;
-
-        if (true == is_array($vars)) {
-
-            foreach($vars as $k_p=>$p) {
+        if (true === is_array(ARGV)) {
+            foreach (ARGV as $k_p => $p) {
                 $exp = explode('=', $p);
                 if (!empty($exp[1])) {
-                    $this->request_argv[$exp[0]] = $exp[1];
+                    $this->requestArgv[$exp[0]] = $exp[1];
                 }
             }
-
         }
-
     }
 
-    public function getRequest():array
+    /**
+     * @return array
+     */
+    public function getRequest(): array
     {
-        return $this->request_argv;
+        return $this->requestArgv;
     }
 }

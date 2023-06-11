@@ -12,7 +12,7 @@ use system\core\Logger;
  *
  * @package method\wtradeApiToOpencart2
  */
-class Controller extends \system\core\abstracts\mvc\MVCController
+class Controller extends \system\core\abstracts\mvc\WebController
 {
     /**
 

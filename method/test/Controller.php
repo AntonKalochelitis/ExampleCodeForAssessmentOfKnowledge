@@ -2,6 +2,8 @@
 
 namespace method\test;
 
+use system\core\abstracts\mvc\View;
+use system\core\abstracts\mvc\WebController;
 use system\core\Logger;
 
 /**
@@ -9,10 +11,10 @@ use system\core\Logger;
  *
  * @package method\test
  */
-class Controller extends \system\core\abstracts\mvc\MVCController
+class Controller extends WebController
 {
-    public function getRun():void
+    public function getRun(): void
     {
-        $this->view->setResult('Привет мир!');
+        View::set('Привет мир!');
     }
 }

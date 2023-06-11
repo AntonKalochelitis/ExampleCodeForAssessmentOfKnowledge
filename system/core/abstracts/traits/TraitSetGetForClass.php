@@ -17,6 +17,7 @@ trait TraitSetGetForClass
      * @var array
      */
     protected $valueArray = [];
+
     /**
      * Задаем магическим методом переменную
      *
@@ -29,6 +30,7 @@ trait TraitSetGetForClass
     {
         $this->valueArray[$key] = $value;
     }
+
     /**
      * Получаем магическим методом переменную
      *
@@ -42,6 +44,7 @@ trait TraitSetGetForClass
             return $this->valueArray[$key];
         }
     }
+
     /**
      * Существует ли магическая переменная
      *
@@ -53,6 +56,7 @@ trait TraitSetGetForClass
     {
         return isset($this->valueArray[$key]);
     }
+
     /**
      * Уничтожение магической переменной
      *
